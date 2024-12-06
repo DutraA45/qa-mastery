@@ -1,60 +1,105 @@
 # QA Mastery  
 
-## Descrição  
-**QA Mastery** é um projeto de gestão de usuários (CRUD) com foco em qualidade de software (QA). Ele serve como laboratório para práticas de teste e ferramentas de QA, abordando desde testes de unidade e integração até segurança e qualidade de código.  
+## Description  
+User management project focused on QA with Cypress, Node.js/Express (Jest), MongoDB (Docker), and GitHub Actions for testing and code quality. 
 
-A aplicação inclui:  
-- **Front-end:** Interface administrativa desenvolvida em React.  
-- **Back-end:** API criada com Node.js e Express.  
-- **Banco de Dados:** MongoDB, executado em um container Docker.  
-- **QA:** Testes front-end com Cypress, testes de unidade, integração e sistema, ESLint, análise de segurança e qualidade de código.  
-- **CI/CD:** Visualização e integração contínua com GitHub Actions.  
+Project developed as a study in the QA (Quality Assurance) subject of the Full-stack PUC Postgraduate Program and exported from the "all-studies" repository due to the use of Github Actions and its continuous integration.
 
 ---
 
-## Tecnologias Utilizadas  
-- **Front-end:**  
-  - React  
-  - Cypress (para testes)  
+## Technologies Used  
+### Front-end  
+- React  
+- Cypress (for testing)  
 
-- **Back-end:**  
-  - Node.js  
-  - Express  
-  - Jest (testes de unidade e integração)  
+### Back-end  
+- Node.js  
+- Express  
+- Jest (unit and integration tests)  
 
-- **Banco de Dados:**  
-  - MongoDB em container Docker  
+### Database  
+- MongoDB (Docker)  
 
-- **QA e CI/CD:**  
-  - Cypress  
-  - Jest  
-  - ESLint  
-  - GitHub Actions  
-
----
-
-## Funcionalidades  
-- Interface de gestão de usuários (CRUD):  
-  - Criar, visualizar, editar e excluir usuários.  
-
-- Foco em QA:  
-  - Testes front-end automatizados com Cypress.  
-  - Testes de unidade, integração e sistema para a API.  
-  - Análise de segurança e qualidade de código.  
-  - Integração contínua configurada com GitHub Actions.  
+### QA and CI/CD  
+- Cypress  
+- Jest  
+- ESLint  
+- GitHub Actions  
 
 ---
 
-## Como Executar o Projeto  
+## Features  
+- **User management (CRUD):** Create, view, update, and delete users.  
+- **Comprehensive QA focus:**  
+  - Front-end automated tests with Cypress.  
+  - Back-end unit, integration, and system tests with Jest.  
+  - Security and code quality analysis.  
+  - Continuous integration with GitHub Actions.  
 
-### **Pré-requisitos**  
-Certifique-se de ter as seguintes ferramentas instaladas:  
+---
+
+## How to Run the Project  
+
+### Prerequisites  
+Ensure you have the following installed:  
 - Node.js (>= 16.x)  
-- Docker e Docker Compose  
+- Docker and Docker Compose  
 
-### **Passo a Passo**  
+### Steps  
 
-1. Clone o repositório:  
+1. **Set up the environment:**  
+   - Create a `.env` file with the necessary environment variables. Use `.env.example` as a reference.  
+
+2. **Start MongoDB with Docker Compose:**  
    ```bash
-   git clone https://github.com/seu-usuario/qa-mastery.git
-   cd qa-mastery
+   docker-compose up -d
+
+3. Install dependencies:
+    ```bash
+    cd user-api
+    npm install
+    ```
+
+    ```bash
+    cd ../user-admin
+    npm install
+    ```
+
+4. Run the application:
+- backend and front-end
+    ```bash
+    run start
+
+5. Access the application in your browser:
+- Front-end: http://localhost:3000
+- API: http://localhost:5000
+
+---
+
+## Testing
+### Front-end Testing (Cypress)
+Run automated front-end tests:
+    ```bash
+    npm run cypress
+
+### Back-end Testing (Jest)
+Run unit and integration tests:
+    ```bash
+    npm test
+
+---
+
+## CI/CD and Code Quality
+This repository uses GitHub Actions for:
+- Automated test pipelines.
+- Security and code quality analysis with ESLint and other tools.
+
+---
+
+## Contributing
+Feel free to open issues and submit pull requests. Contributions are always welcome!
+
+---
+
+## License
+This project is licensed under the MIT License.
