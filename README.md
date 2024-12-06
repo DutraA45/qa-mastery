@@ -50,9 +50,10 @@ Ensure you have the following installed:
 1. **Set up the environment:**  
    - Create a `.env` file with the necessary environment variables. Use `.env.example` as a reference.  
 
-2. **Start MongoDB with Docker Compose:**  
+2. **Start MongoDB in Docker:**  
+   - Start your MongoDB container using the following command:  
    ```bash
-   docker-compose up -d
+   docker run --name mongodb -d -p 27017:27017 mongo
 
 3. Install dependencies:
     ```bash
