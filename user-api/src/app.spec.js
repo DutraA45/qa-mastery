@@ -9,7 +9,8 @@ describe('UserApi', () => {
   let client;
 
   beforeAll(async () => {
-    const uri = 'mongodb://adm:123@127.0.0.1:27017/?authSource=admin';
+    // const uri = 'mongodb://adm:123@127.0.0.1:27017/?authSource=admin';
+    const uri = 'mongodb://root:root@127.0.0.1:27017/?authSource=admin';
     client = new MongoClient(uri);
     await client.connect();
     collection = client.db('users_db').collection('users');
