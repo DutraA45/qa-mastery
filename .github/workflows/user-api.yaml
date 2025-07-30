@@ -20,6 +20,7 @@ jobs:
         with:
           node-version: 18.x
           cache: "npm"
+          cache-dependency-path: 'user-api/package-lock.json'
       - run: npm ci
       - run: npm run lint
 
@@ -43,6 +44,7 @@ jobs:
         with:
           node-version: 18.x
           cache: "npm"
+          cache-dependency-path: 'user-api/package-lock.json'
       - run: npm ci
       - run: npm test -- --forceExit
 
@@ -56,5 +58,6 @@ jobs:
         with:
           node-version: 18.x
           cache: "npm"
+          cache-dependency-path: 'user-api/package-lock.json'
       - run: npm ci
       - run: npm audit --production
