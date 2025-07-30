@@ -1,9 +1,9 @@
 name: User Admin CI
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 defaults:
   run:
@@ -11,18 +11,18 @@ defaults:
 
 jobs:
   lint:
-      name: Análise estática
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - name: Use Node.js
-          uses: actions/setup-node@v2
-          with:
-            node-version: 16.x
-            cache: 'npm'
-            cache-dependency-path: user-admin/package-lock.json
-        - run: npm ci
-        - run: npm run lint
+    name: Análise estática
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: "npm"
+          cache-dependency-path: user-admin/package-lock.json
+      - run: npm ci
+      - run: npm run lint
 
   vulnerability:
     name: Teste de Vulnerabilidade
@@ -33,7 +33,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16.x
-          cache: 'npm'
+          cache: "npm"
           cache-dependency-path: user-admin/package-lock.json
       - run: npm ci
       - run: npm audit --production
