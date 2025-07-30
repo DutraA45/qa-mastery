@@ -1,3 +1,7 @@
 {
-    "preset": "@shelf/jest-mongodb"
+  "preset": "@shelf/jest-mongodb",
+  "testEnvironment": "node",
+  "verbose": true,
+  "testMatch": ["**/*.spec.js"],
+  "setupFilesAfterEnv": ["./jest.setup.js"]
 }
