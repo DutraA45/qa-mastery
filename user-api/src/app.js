@@ -19,7 +19,8 @@ let connected = false;
 
 app.use(async (req, res, next) => {
   if (!connected) {
-    const uri = 'mongodb://127.0.0.1:27017/users_db';
+    // const uri = 'mongodb://127.0.0.1:27017/users_db'; // Uso local
+    const uri = 'mongodb://root:root@localhost:27017'; // Uso Docker Workflow
     client = new MongoClient(uri);
     await client.connect();
     const collection = client.db('users_db').collection('users');
