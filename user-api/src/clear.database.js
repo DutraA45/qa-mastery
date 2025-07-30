@@ -2,7 +2,7 @@ const {MongoClient} = require('mongodb');
 const UserRepository = require('./user-repository.js');
 
 (async () => {
-  const uri = 'mongodb://adm:123@127.0.0.1:27017/?authSource=admin';
+  const uri = 'mongodb://127.0.0.1:27017/users_db';
   const client = new MongoClient(uri);
   await client.connect();
   const collection = client.db('users_db').collection('users');
