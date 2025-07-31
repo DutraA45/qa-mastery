@@ -41,7 +41,7 @@ describe('UserRepository', () => {
     });
 
     test('Deve lançar uma exceção para um usuário não existente', async () => {
-      await expect(userRepository.findOneById(ObjectId('61a05c492d399952b235d8bd')))
+      await expect(userRepository.findOneById(new ObjectId('61a05c492d399952b235d8bd')))
           .rejects.toThrow('User with id 61a05c492d399952b235d8bd does not exist');
     });
   });
@@ -116,7 +116,7 @@ describe('UserRepository', () => {
     });
 
     test('Deve lançar uma exceção para um usuário não existente', async () => {
-      await expect(userRepository.delete(ObjectId('61a05c492d399952b235d8bd')))
+      await expect(userRepository.delete(new ObjectId('61a05c492d399952b235d8bd')))
           .rejects.toThrow('User with id 61a05c492d399952b235d8bd does not exist');
     });
   });
