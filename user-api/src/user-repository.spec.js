@@ -101,9 +101,6 @@ describe('UserRepository', () => {
         email: 'john@doe.com',
       });
     });
-    test('Deve lançar uma exceção para um usuário não existente', async () => {
-
-    });
   });
 
   describe('delete', () => {

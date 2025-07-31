@@ -46,7 +46,7 @@ app.get('/users/:id', async (request, response) => {
   try {
     const user = await userRepository.findOneById(ObjectId(request.params.id));
     response.json(user);
-  } catch (e) {
+  } catch {
     response.status(404).json({
       message: 'User not found',
       code: 404,
@@ -58,7 +58,7 @@ app.put('/users/:id', async (request, response) => {
   try {
     const user = await userRepository.update(ObjectId(request.params.id), request.body);
     response.json(user);
-  } catch (e) {
+  } catch {
     response.status(404).json({
       message: 'User not found',
       code: 404,
