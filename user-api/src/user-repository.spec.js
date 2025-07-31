@@ -8,8 +8,8 @@ describe('UserRepository', () => {
   let client;
 
   beforeAll(async () => {
-    // const uri = 'mongodb://127.0.0.1:27017/users_db';  // Uso local
-    const uri = 'mongodb://root:root@localhost:27017'; // Uso Docker Workflow
+     const uri = 'mongodb://127.0.0.1:27017/users_db';  // Uso local
+    // const uri = 'mongodb://root:root@localhost:27017'; // Uso Docker Workflow
     client = new MongoClient(uri);
     await client.connect();
     collection = client.db('users_db').collection('users');

@@ -9,8 +9,8 @@ describe('UserApi', () => {
   let client;
 
   beforeAll(async () => {
-    // const uri = 'mongodb://127.0.0.1:27017/users_db';  // Uso local
-    const uri = 'mongodb://root:root@localhost:27017'; // Uso Docker Workflow
+     const uri = 'mongodb://127.0.0.1:27017/users_db';  // Uso local
+    // const uri = 'mongodb://root:root@localhost:27017'; // Uso Docker Workflow
     client = new MongoClient(uri);
     await client.connect();
     collection = client.db('users_db').collection('users');
@@ -86,7 +86,11 @@ describe('UserApi', () => {
           email: 'john@doe.com',
         });
 
-        const response = await request(app).get(`/users/${user.id}`);
+        console.log('User inserted with ID:', user.id); // Verifique se o ID está correto
+
+        const response = await request(app).get(`/users/${user.id.toString()}`);
+
+        console.log('Response:', response.status, response.body); // Veja o que está sendo retornado
 
         expect(response.statusCode).toBe(200);
         expect(response.body).toEqual(expect.objectContaining({
