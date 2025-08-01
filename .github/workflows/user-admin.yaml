@@ -60,12 +60,6 @@ jobs:
           cache: 'npm'
           cache-dependency-path: 'user-admin/package-lock.json'
 
-      - name: Install dependencies
-        working-directory: user-admin
-        run: |
-          npm ci
-          npm install react-scripts --save-dev
-
       - name: Starts API server in background
         run: |
           npm --prefix ../user-api ci
