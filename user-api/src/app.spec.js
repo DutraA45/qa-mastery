@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('./app');
-const {MongoClient} = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const UserRepository = require('./user-repository');
 
 describe('UserApi', () => {
@@ -9,7 +9,7 @@ describe('UserApi', () => {
   let client;
 
   beforeAll(async () => {
-     const uri = 'mongodb://127.0.0.1:27017/users_db';  // Uso local
+    const uri = 'mongodb://127.0.0.1:27017/users_db';  // Uso local
     // const uri = 'mongodb://root:root@localhost:27017'; // Uso Docker Workflow
     client = new MongoClient(uri);
     await client.connect();
@@ -86,11 +86,11 @@ describe('UserApi', () => {
           email: 'john@doe.com',
         });
 
-        console.log('User inserted with ID:', user.id); // Verifique se o ID está correto
+        console.log('ID retornado do insert:', user.id);
+        console.log('Tipo de ID:', typeof user.id);
+        console.log('Instância do ObjectId?', user.id instanceof ObjectId);
 
-        const response = await request(app).get(`/users/${user.id.toString()}`);
-
-        console.log('Response:', response.status, response.body); // Veja o que está sendo retornado
+        const response = await request(app).get(`/users/${String(user.id)}`);
 
         expect(response.statusCode).toBe(200);
         expect(response.body).toEqual(expect.objectContaining({

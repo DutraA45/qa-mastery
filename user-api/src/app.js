@@ -2,7 +2,7 @@ const express = require('express');
 const {MongoClient} = require('mongodb');
 const UserRepository = require('./user-repository');
 const bodyParser = require('body-parser');
-const {ObjectId} = require('bson');
+const { ObjectId } = require('mongodb');
 const cors = require('cors');
 
 const app = express();
@@ -44,7 +44,7 @@ app.post('/users', async (request, response) => {
 
 app.get('/users/:id', async (request, response) => {
   try {
-    const user = await userRepository.findOneById(ObjectId(request.params.id));
+    const user = await userRepository.findOneById(new ObjectId(request.params.id));
     response.json(user);
   } catch {
     response.status(404).json({

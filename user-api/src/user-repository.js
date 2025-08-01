@@ -29,7 +29,7 @@ class UserRepository {
    * @throws {Error} - Se o usuário não for encontrado.
    */
   async findOneByEmail(email) {
-    const user = await this.collection.findOne({email});
+    const user = await this.collection.findOne({ email });
 
     if (user === null) {
       throw new Error(`User with email ${email} does not exist`);
@@ -45,7 +45,7 @@ class UserRepository {
    * @throws {Error} - Se o usuário não for encontrado.
    */
   async findOneById(id) {
-    const user = await this.collection.findOne({_id: id});
+    const user = await this.collection.findOne({ _id: id });
 
     if (user === null) {
       throw new Error(`User with id ${id} does not exist`);
@@ -60,9 +60,10 @@ class UserRepository {
    * @return {Object} - O usuário inserido com o campo id.
    */
   async insert(user) {
-    await this.collection.insertOne(user);
-    return addIdToUser(user);
+    const result = await this.collection.insertOne(user);
+    return addIdToUser({ ...user, _id: result.insertedId });
   }
+
 
   /**
    * Atualiza os dados de um usuário existente.
@@ -72,7 +73,7 @@ class UserRepository {
    * @throws {Error} - Se o usuário não for encontrado.
    */
   async update(id, data) {
-    const result = await this.collection.findOneAndUpdate({_id: id}, {
+    const result = await this.collection.findOneAndUpdate({ _id: id }, {
       $set: data,
     }, {
       returnNewDocument: true,
@@ -91,7 +92,7 @@ class UserRepository {
    * @throws {Error} - Se o usuário não for encontrado.
    */
   async delete(id) {
-    const result = await this.collection.deleteOne({_id: id});
+    const result = await this.collection.deleteOne({ _id: id });
 
     if (result.deletedCount === 0) {
       throw new Error(`User with id ${id} does not exist`);

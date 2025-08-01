@@ -31,7 +31,7 @@ describe('UserRepository', () => {
         email: 'john@doe.com',
       });
 
-      const user = await userRepository.findOneById(ObjectId(result.insertedId));
+      const user = await userRepository.findOneById(new ObjectId(result.insertedId));
 
       expect(user).toStrictEqual({
         id: result.insertedId,
