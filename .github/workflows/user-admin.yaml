@@ -75,7 +75,7 @@ jobs:
           sleep 10
           
       - name: Clear database
-        run: node ../user-api/scripts/clear.database.js
+        run: node ../user-api/src/clear.database.js
         env:
           MONGO_URL: mongodb://root:root@localhost:27017/qa-mastery
 
