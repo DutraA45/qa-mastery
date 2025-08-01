@@ -77,7 +77,7 @@ jobs:
       - name: Clear database
         run: node ../user-api/src/clear.database.js
         env:
-          MONGO_URL: mongodb://root:root@localhost:27017/qa-mastery
+          MONGO_URL: mongodb://root:root@localhost:27017/users_db?authSource=admin
 
       - name: Run cypress
         uses: cypress-io/github-action@v6
