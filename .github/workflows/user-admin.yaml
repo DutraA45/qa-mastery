@@ -52,16 +52,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 22.17.1
           cache: 'npm'
           cache-dependency-path: 'user-admin/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: user-admin
+        run: |
+          npm ci
+          npm install react-scripts --save-dev
+
       - name: Starts API server in background
         run: |
           npm --prefix ../user-api ci
           npm --prefix ../user-api run start &
+
       - name: Run cypress
         uses: cypress-io/github-action@v6
         with:
@@ -69,6 +78,7 @@ jobs:
           start: npm start
           working-directory: user-admin
           install-command: npm ci
+
       - name: Arquiva os videos e screenshots
         uses: actions/upload-artifact@v4
         if: failure()
