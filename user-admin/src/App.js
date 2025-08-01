@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {Admin, Resource} from 'react-admin';
 import jsonServerProvider from 'ra-data-json-server';
 import {UserCreate, UserEdit, UserList} from './Users';
