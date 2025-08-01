@@ -25,10 +25,10 @@
     "web-vitals": "^5.0.3"
   },
   "devDependencies": {
-    "@eslint/js": "^9.32.0",
+    "@eslint/js": "^8.57.1",
     "@shelf/jest-mongodb": "^5.2.2",
     "cypress": "^14.5.3",
-    "eslint": "^9.32.0",
+    "eslint": "^8.57.1",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.3.0",
