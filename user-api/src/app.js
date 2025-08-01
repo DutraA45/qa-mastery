@@ -79,4 +79,8 @@ app.delete('/users/:id', async (request, response) => {
   }
 });
 
+app.get('/api/healthcheck', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 module.exports = app;

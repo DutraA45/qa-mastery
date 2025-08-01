@@ -72,7 +72,7 @@ jobs:
         run: |
           npm --prefix ../user-api ci
           npm --prefix ../user-api run start &
-          npx wait-on http://localhost:3001/api/healthcheck
+          npx wait-on http://localhost:4000/api/healthcheck
           
       - name: Clear database
         run: node ../user-api/src/clear.database.js
