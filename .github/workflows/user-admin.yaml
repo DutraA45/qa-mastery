@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 22.17.1
           cache: "npm"
-          cache-dependency-path: 'user-admin/package-lock.json'
+          cache-dependency-path: "user-admin/package-lock.json"
       - run: npm ci
       - run: npm run lint
 
@@ -34,7 +34,7 @@ jobs:
         with:
           node-version: 22.17.1
           cache: "npm"
-          cache-dependency-path: 'user-admin/package-lock.json'
+          cache-dependency-path: "user-admin/package-lock.json"
       - run: npm ci
       - run: npm audit --production
 
@@ -57,8 +57,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 22.17.1
-          cache: 'npm'
-          cache-dependency-path: 'user-admin/package-lock.json'
+          cache: "npm"
+          cache-dependency-path: "user-admin/package-lock.json"
 
       - name: Install dependencies
         working-directory: user-admin
@@ -67,9 +67,12 @@ jobs:
           npm install react-scripts --save-dev
 
       - name: Starts API server in background
+        env:
+          MONGO_URL: mongodb://root:root@localhost:27017/qa-mastery
         run: |
           npm --prefix ../user-api ci
           npm --prefix ../user-api run start &
+          sleep 10
 
       - name: Run cypress
         uses: cypress-io/github-action@v6
@@ -78,6 +81,8 @@ jobs:
           start: npm start
           working-directory: user-admin
           install-command: npm ci
+        env:
+          MONGO_URL: mongodb://root:root@localhost:27017/qa-mastery
 
       - name: Arquiva os videos e screenshots
         uses: actions/upload-artifact@v4
