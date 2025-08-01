@@ -14,7 +14,7 @@ jobs:
     name: Análise estática
     runs-on: ubuntu-latest
     env:
-          MONGO_URL: mongodb://root:root@localhost:27017/qa-mastery
+      MONGO_URL: mongodb://root:root@localhost:27017/qa-mastery
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
