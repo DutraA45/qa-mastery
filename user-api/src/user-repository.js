@@ -1,3 +1,5 @@
+const { ObjectId } = require('mongodb');
+
 /**
  * Adiciona o ID ao usuário e remove o campo _id.
  * @param {Object} user - O usuário ao qual o ID será adicionado.
@@ -45,7 +47,7 @@ class UserRepository {
    * @throws {Error} - Se o usuário não for encontrado.
    */
   async findOneById(id) {
-    const user = await this.collection.findOne({ _id: id });
+    const user = await this.collection.findOne({ _id: new ObjectId(id) });
 
     if (user === null) {
       throw new Error(`User with id ${id} does not exist`);
@@ -73,7 +75,7 @@ class UserRepository {
    * @throws {Error} - Se o usuário não for encontrado.
    */
   async update(id, data) {
-    const result = await this.collection.findOneAndUpdate({ _id: id }, {
+    const result = await this.collection.findOneAndUpdate({ _id: new ObjectId(id) }, {
       $set: data,
     }, {
       returnNewDocument: true,
@@ -92,7 +94,7 @@ class UserRepository {
    * @throws {Error} - Se o usuário não for encontrado.
    */
   async delete(id) {
-    const result = await this.collection.deleteOne({ _id: id });
+    const result = await this.collection.deleteOne({ _id: new ObjectId(id) });
 
     if (result.deletedCount === 0) {
       throw new Error(`User with id ${id} does not exist`);

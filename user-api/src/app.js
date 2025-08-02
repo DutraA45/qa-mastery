@@ -19,8 +19,8 @@ let connected = false;
 
 app.use(async (req, res, next) => {
   if (!connected) {
-    // const uri = 'mongodb://127.0.0.1:27017/users_db'; // Uso local
-    const uri = 'mongodb://root:root@localhost:27017'; // Uso Docker Workflow
+    const uri = 'mongodb://127.0.0.1:27017/users_db'; // Uso local
+    // const uri = 'mongodb://root:root@localhost:27017'; // Uso Docker Workflow
     client = new MongoClient(uri);
     await client.connect();
     const collection = client.db('users_db').collection('users');
@@ -56,7 +56,7 @@ app.get('/users/:id', async (request, response) => {
 
 app.put('/users/:id', async (request, response) => {
   try {
-    const user = await userRepository.update(ObjectId(request.params.id), request.body);
+    const user = await userRepository.update(new ObjectId(request.params.id), request.body);
     response.json(user);
   } catch {
     response.status(404).json({
@@ -68,11 +68,11 @@ app.put('/users/:id', async (request, response) => {
 
 app.delete('/users/:id', async (request, response) => {
   try {
-    await userRepository.delete(ObjectId(request.params.id));
-    response.status(200).json(request.body);
+    await userRepository.delete(new ObjectId(request.params.id));
+    return response.status(204).end();
   } catch (e) {
-    console.log(e.message);
-    response.status(404).json({
+    console.error('Delete error:', e.message);
+    return response.status(404).json({
       message: 'User not found',
       code: 404,
     });
