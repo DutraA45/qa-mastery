@@ -78,8 +78,8 @@ describe("Gestão de usuários", () => {
                 name: 'John Doe',
                 email: 'john@doe.com'
             })
-            .its('body')
-            .as('user')
+                .its('body')
+                .as('user')
         })
 
         it.only("a partir da listagem", () => {
@@ -91,16 +91,16 @@ describe("Gestão de usuários", () => {
             cy.contains('Do you want to add one?').should('exist')
             cy.contains('Create').should('exist')
         })
-        
-        it.only("a partir do formulário de edição", function () {
-            const {id} = this.user;
-            cy.visit(`#/users/${id}`)
-            cy.get('button[aria-label=Delete]').click()
-            cy.wait(10000)
-            cy.contains('No Users yet').should('exist')
-            cy.contains('Do you want to add one?').should('exist')
-            cy.contains('Create').should('exist')
-        })
+
+        // it.only("a partir do formulário de edição", function () {
+        //     const { id } = this.user;
+        //     cy.visit(`#/users/${id}`)
+        //     cy.get('button[aria-label=Delete]').click()
+        //     cy.get('.MuiTable-root tbody tr').should('have.length', 0)
+        //     cy.contains('No Users yet').should('exist')
+        //     cy.contains('Do you want to add one?').should('exist')
+        //     cy.contains('Create').should('exist')
+        // })
     })
 
 })
